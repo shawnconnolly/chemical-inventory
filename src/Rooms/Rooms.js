@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import classes from './Rooms.module.css'
+import { connect } from 'react-redux';
+import * as actions from '../Store/Actions/index';
 
 class Rooms extends Component {
     state = {
@@ -10,61 +12,13 @@ class Rooms extends Component {
         selectedRoom: -1
     };
 
-    nameUpdated = (event) => {
-        this.setState({ roomName: event.target.value });
-    }
 
-    locationUpdated = (event) => {
-        this.setState({ roomLocation: event.target.value });
-    }
-
-    addRoom = (event) => {
-        const rooms = [...this.state.rooms];
-        rooms.push({ name: this.state.roomName, location: this.state.roomLocation })
-        this.setState({
-            rooms: rooms,
-            roomName: '',
-            roomLocation: '',
-            selectedRoom: -1
-        });
-    }
-
-    editSelected = (event) => {
-        const rooms = [...this.state.rooms];
-        rooms[this.state.selectedRoom] = { name: this.state.roomName, location: this.state.roomLocation };
-        this.setState({
-            rooms: rooms,
-            roomName: '',
-            roomLocation: '',
-            selectedRoom: -1
-        });
-    }
-
-    deleteSelected = (event) => {
-        const rooms = [...this.state.rooms];
-        rooms.splice(this.state.selectedRoom, 1);
-        this.setState({
-            rooms: rooms,
-            roomName: '',
-            roomLocation: '',
-            selectedRoom: -1
-        });
-    }
-
-    editRoomSelected = (index) => {
-        const room = this.state.rooms[index];
-        this.setState({
-            roomName: room.name,
-            roomLocation: room.location,
-            selectedRoom: index
-        });
-    }
 
     render() {
-        const listItems = this.state.rooms.map((room, index) =>
+        const listItems = this.props.rooms.map((room, index) =>
             <li className={classes.Rooms}
                 key={index}
-                onClick={() => this.editRoomSelected(index)}>{room.name} - {room.location}</li>
+                onClick={() => this.props.onSelectRoom(index)}>{room.name} - {room.location}</li>
         );
 
         return (
@@ -74,24 +28,25 @@ class Rooms extends Component {
                     <input type="text"
                         name="name"
                         className="form-control"
-                        value={this.state.roomName}
-                        onChange={(e) => this.nameUpdated(e)} />
+                        value={this.props.roomName}
+                        onChange={(e) => this.props.onRoomNameUpdated(e.target.value)} />
                     <label for="location">Location</label>
                     <input type="text"
                         name="location"
                         className="form-control"
-                        value={this.state.roomLocation}
-                        onChange={(e) => this.locationUpdated(e)} />
+                        value={this.props.roomLocation}
+                        onChange={(e) => this.props.onRoomLocationUpdated(e.target.value)} />
                         <hr></hr>
                     <button class="btn btn-primary"
-                        onClick={this.addRoom}
-                        disabled={this.state.selectedRoom !== -1}>Add</button>
+                        onClick={() => this.props.onRoomAdded({name:this.props.roomName,location:this.props.roomLocation})}
+                        disabled={this.props.selectedRoom !== -1}>Add</button>
                     <button class="btn btn-primary"
-                        disabled={this.state.selectedRoom === -1}
-                        onClick={this.deleteSelected}>Remove</button>
+                        disabled={this.props.selectedRoom === -1}
+                        onClick={() => this.props.onRoomRemoved(this.props.selectedRoom)}>Remove</button>
                     <button class="btn btn-primary"
-                        disabled={this.state.selectedRoom === -1}
-                        onClick={this.editSelected}>Edit</button>
+                        disabled={this.props.selectedRoom === -1}
+                        onClick={() => this.props.onEditRoom({name:this.props.roomName,location:this.props.roomLocation}, this.props.selectedRoom)}>Edit</button>
+                        
                 </div>
                 <ul>
                     {listItems}
@@ -101,4 +56,24 @@ class Rooms extends Component {
     }
 }
 
-export default Rooms;
+const mapStateToProps = state => {
+    return {
+        rooms: state.rooms,
+        roomName: state.roomName,
+        roomLocation: state.roomLocation,
+        selectedRoom: state.selectedRoom
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onRoomAdded: (room) => dispatch(actions.addRoom(room)),
+        onRoomRemoved: (index) => dispatch(actions.removeRoom(index)),
+        onEditRoom: (room, index) => dispatch(actions.editRoom(room, index)),
+        onSelectRoom: (index) => dispatch(actions.selectRoom(index)),
+        onRoomNameUpdated: (name) => dispatch(actions.updateRoomName(name)),
+        onRoomLocationUpdated: (location) => dispatch(actions.updateRoomLocation(location))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Rooms);
