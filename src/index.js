@@ -9,10 +9,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore} from 'redux';
-import reducer from './Store/Reducers/Rooms';
+import { createStore } from 'redux';
+import RoomsReducer from './Store/Reducers/Rooms';
 
-const store = createStore(reducer);
+const store = createStore(RoomsReducer);
 
 const app = (<Provider store={store}>
     <BrowserRouter>

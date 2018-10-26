@@ -4,15 +4,10 @@ import { connect } from 'react-redux';
 import * as actions from '../Store/Actions/index';
 
 class Rooms extends Component {
-    state = {
-        rooms: [{ name: "103", location: "North Building" },
-        { name: "104", location: "North Building" }],
-        roomName: '',
-        roomLocation: '',
-        selectedRoom: -1
-    };
 
-
+    viewChemicals = () => {
+        this.props.history.push('/chemicals');
+    }
 
     render() {
         const listItems = this.props.rooms.map((room, index) =>
@@ -46,7 +41,9 @@ class Rooms extends Component {
                     <button class="btn btn-primary"
                         disabled={this.props.selectedRoom === -1}
                         onClick={() => this.props.onEditRoom({name:this.props.roomName,location:this.props.roomLocation}, this.props.selectedRoom)}>Edit</button>
-                        
+                    <button class="btn btn-primary"
+                        disabled={this.props.selectedRoom === -1}
+                        onClick={this.viewChemicals}>View Chemicals</button>
                 </div>
                 <ul>
                     {listItems}
