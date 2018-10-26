@@ -10,8 +10,6 @@ class Rooms extends Component {
         selectedRoom: -1
     };
 
-
-
     nameUpdated = (event) => {
         this.setState({ roomName: event.target.value });
     }
@@ -23,6 +21,28 @@ class Rooms extends Component {
     addRoom = (event) => {
         const rooms = [...this.state.rooms];
         rooms.push({ name: this.state.roomName, location: this.state.roomLocation })
+        this.setState({
+            rooms: rooms,
+            roomName: '',
+            roomLocation: '',
+            selectedRoom: -1
+        });
+    }
+
+    editSelected = (event) => {
+        const rooms = [...this.state.rooms];
+        rooms[this.state.selectedRoom] = { name: this.state.roomName, location: this.state.roomLocation };
+        this.setState({
+            rooms: rooms,
+            roomName: '',
+            roomLocation: '',
+            selectedRoom: -1
+        });
+    }
+
+    deleteSelected = (event) => {
+        const rooms = [...this.state.rooms];
+        rooms.splice(this.state.selectedRoom, 1);
         this.setState({
             rooms: rooms,
             roomName: '',
@@ -66,8 +86,12 @@ class Rooms extends Component {
                     <button class="btn btn-primary"
                         onClick={this.addRoom}
                         disabled={this.state.selectedRoom !== -1}>Add</button>
-                    <button class="btn btn-primary">Remove</button>
-                    <button class="btn btn-primary">Edit</button>
+                    <button class="btn btn-primary"
+                        disabled={this.state.selectedRoom === -1}
+                        onClick={this.deleteSelected}>Remove</button>
+                    <button class="btn btn-primary"
+                        disabled={this.state.selectedRoom === -1}
+                        onClick={this.editSelected}>Edit</button>
                 </div>
                 <ul>
                     {listItems}
