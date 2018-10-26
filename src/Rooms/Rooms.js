@@ -52,7 +52,6 @@ class Rooms extends Component {
     }
 
     editRoomSelected = (index) => {
-        console.dir('index: ' + index);
         const room = this.state.rooms[index];
         this.setState({
             roomName: room.name,
@@ -83,6 +82,7 @@ class Rooms extends Component {
                         className="form-control"
                         value={this.state.roomLocation}
                         onChange={(e) => this.locationUpdated(e)} />
+                        <hr></hr>
                     <button class="btn btn-primary"
                         onClick={this.addRoom}
                         disabled={this.state.selectedRoom !== -1}>Add</button>

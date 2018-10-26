@@ -1,0 +1,14 @@
+.Chemicals {
+    list-style: none;
+    cursor: pointer;
+}
+
+.Chemicals:hover,
+.Chemicals:active {
+    border: 2px solid black;
+}
+
+.Chemicals input,
+.Chemicals label {
+    width: 80%;
+}
