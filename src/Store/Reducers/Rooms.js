@@ -95,7 +95,6 @@ const cabinetUpdated = (state, action) => {
 }
 
 const addChemical = (state, action) => {
-    console.log(JSON.stringify(state));
     const chemicals = [...state.rooms[state.selectedRoom].chemicals];
     chemicals.push(action.chemical);
     const rooms = [...state.rooms];

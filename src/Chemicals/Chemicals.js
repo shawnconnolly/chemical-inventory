@@ -5,16 +5,14 @@ import * as actions from '../Store/Actions/index';
 
 class Chemicals extends Component {
 
-
-
     render() {
         const pleaseSelect = (<p>Please Select a Room!</p>);
         let listItems = null;
-        if (this.props.selectedRoom > -1) {
+        if (this.props.selectedRoom > -1 && this.props.rooms[this.props.selectedRoom].chemicals) {
             listItems = this.props.rooms[this.props.selectedRoom].chemicals.map((chemical, index) =>
                 <li className={classes.Chemicals}
                     key={index}
-                    onClick={() => this.props.onSelectChemical(index)}>{chemical.name} - {chemical.cabinet}</li>
+                    onClick={() => this.props.onSelectChemical(index)}>{chemical.name}, {chemical.tradeName} - {chemical.quantity} {chemical.UoM}- {chemical.cabinet}</li>
             );
         }
 

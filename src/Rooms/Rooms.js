@@ -33,14 +33,14 @@ class Rooms extends Component {
                         onChange={(e) => this.props.onRoomLocationUpdated(e.target.value)} />
                         <hr></hr>
                     <button class="btn btn-primary"
-                        onClick={() => this.props.onRoomAdded({name:this.props.roomName,location:this.props.roomLocation})}
+                        onClick={() => this.props.onRoomAdded({name:this.props.roomName,location:this.props.roomLocation, chemicals:[]})}
                         disabled={this.props.selectedRoom !== -1}>Add</button>
                     <button class="btn btn-primary"
                         disabled={this.props.selectedRoom === -1}
                         onClick={() => this.props.onRoomRemoved(this.props.selectedRoom)}>Remove</button>
                     <button class="btn btn-primary"
                         disabled={this.props.selectedRoom === -1}
-                        onClick={() => this.props.onEditRoom({name:this.props.roomName,location:this.props.roomLocation}, this.props.selectedRoom)}>Edit</button>
+                        onClick={() => this.props.onEditRoom({name:this.props.roomName,location:this.props.roomLocation, chemicals:[]}, this.props.selectedRoom)}>Edit</button>
                     <button class="btn btn-primary"
                         disabled={this.props.selectedRoom === -1}
                         onClick={this.viewChemicals}>View Chemicals</button>
