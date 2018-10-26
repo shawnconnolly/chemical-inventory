@@ -22,9 +22,6 @@ const addRoom = (state, action) => {
 }
 
 const editRoom = (state, action) => {
-
-    console.log('editing room: ' + JSON.stringify(action.index));
-    console.log('editing room: ' + JSON.stringify(action.room));
     const rooms = [...state.rooms];
     rooms[action.room] = action.index;
     const updatedState = {
@@ -37,7 +34,6 @@ const editRoom = (state, action) => {
 }
 
 const removeRoom = (state, action) => {
-    console.log('removing room: ' + action.index);
     const rooms = [...state.rooms];
     rooms.splice(action.index, 1);
     const updatedState = {
@@ -50,7 +46,6 @@ const removeRoom = (state, action) => {
 }
 
 const selectRoom = (state, action) => {
-    console.log('selecting room: ' + action.index);
     const room = state.rooms[action.index];
     const updatedState = {
         roomName: room.name,
@@ -61,13 +56,11 @@ const selectRoom = (state, action) => {
 }
 
 const roomNameUpdated = (state, action) => {
-    console.log('Updating room name: ' + action);
     const updatedState = { roomName: action.name };
     return updateObject( state, updatedState );
 }
 
 const roomLocationUpdated = (state, action) => {
-    console.log('Updating room location: ' + action);
     const updatedState = { roomLocation: action.location };
     return updateObject( state, updatedState );
 }
