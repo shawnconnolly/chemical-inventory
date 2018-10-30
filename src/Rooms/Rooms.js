@@ -4,9 +4,34 @@ import { connect } from 'react-redux';
 import * as actions from '../Store/Actions/index';
 
 class Rooms extends Component {
+    validCombo = true;
 
     viewChemicals = () => {
         this.props.history.push('/chemicals');
+    }
+
+    validateUniqueNameLocationForNameUpdate(e) {
+        this.props.onRoomNameUpdated(e.target.value);
+        this.validateNameAndLocation(e.target.value, this.props.roomLocation);
+
+    }
+
+    validateUniqueNameLocationForLocationUpdate(e) {
+        this.props.onRoomLocationUpdated(e.target.value);
+        this.validateNameAndLocation(this.props.roomName, e.target.value);
+    }
+
+    validateNameAndLocation(name, location) {
+        console.log('validating: ' + name + ' - ' + location);
+        var newArray = this.props.rooms.filter(function (room) {
+            return room.name === name &&
+                room.location === location;
+        });
+        if (newArray.length !== 0) {
+            this.validCombo = false;
+        } else {
+            this.validCombo = true;
+        }
     }
 
     render() {
@@ -16,6 +41,11 @@ class Rooms extends Component {
                 onClick={() => this.props.onSelectRoom(index)}>{room.name} - {room.location}</li>
         );
 
+        let invalidMessage = <p>Please provide unique name and location</p>
+        if (this.validCombo) {
+            invalidMessage = null;
+        }
+
         return (
             <div>
                 <div>
@@ -24,23 +54,24 @@ class Rooms extends Component {
                         name="name"
                         className="form-control"
                         value={this.props.roomName}
-                        onChange={(e) => this.props.onRoomNameUpdated(e.target.value)} />
+                        onChange={(e) => this.validateUniqueNameLocationForNameUpdate(e)} />
                     <label for="location">Location</label>
                     <input type="text"
                         name="location"
                         className="form-control"
                         value={this.props.roomLocation}
-                        onChange={(e) => this.props.onRoomLocationUpdated(e.target.value)} />
-                        <hr></hr>
+                        onChange={(e) => this.validateUniqueNameLocationForLocationUpdate(e)} />
+                    {invalidMessage}
+                    <hr></hr>
                     <button class="btn btn-primary"
-                        onClick={() => this.props.onRoomAdded({name:this.props.roomName,location:this.props.roomLocation, chemicals:[]})}
-                        disabled={this.props.selectedRoom !== -1}>Add</button>
+                        onClick={() => this.props.onRoomAdded({ name: this.props.roomName, location: this.props.roomLocation, chemicals: [] })}
+                        disabled={this.props.selectedRoom !== -1 || !this.validCombo}>Add</button>
                     <button class="btn btn-primary"
                         disabled={this.props.selectedRoom === -1}
                         onClick={() => this.props.onRoomRemoved(this.props.selectedRoom)}>Remove</button>
                     <button class="btn btn-primary"
-                        disabled={this.props.selectedRoom === -1}
-                        onClick={() => this.props.onEditRoom({name:this.props.roomName,location:this.props.roomLocation, chemicals:[]}, this.props.selectedRoom)}>Edit</button>
+                        disabled={this.props.selectedRoom === -1 || !this.validCombo}
+                        onClick={() => this.props.onEditRoom({ name: this.props.roomName, location: this.props.roomLocation, chemicals: [] }, this.props.selectedRoom)}>Edit</button>
                     <button class="btn btn-primary"
                         disabled={this.props.selectedRoom === -1}
                         onClick={this.viewChemicals}>View Chemicals</button>
