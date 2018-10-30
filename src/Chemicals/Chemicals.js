@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './Chemicals.module.css'
 import { connect } from 'react-redux';
 import * as actions from '../Store/Actions/index';
+import { Prompt } from 'react-router';
 
 class Chemicals extends Component {
 
@@ -59,12 +60,20 @@ class Chemicals extends Component {
                         onClick={() => this.props.onChemicalRemoved(this.props.selectedChemical)}>Remove</button>
                     <button class="btn btn-primary"
                         disabled={this.props.selectedChemical === -1}
-                        onClick={() => this.props.onEditChemical({ name: this.props.chemName, tradeName: this.props.chemTradeName, quantity: this.props.chemQty, UoM: this.props.chemQtyUoM, cabinet: this.props.cabinet },this.props.selectedChemical)}>Edit</button>
+                        onClick={() => this.props.onEditChemical({ name: this.props.chemName, tradeName: this.props.chemTradeName, quantity: this.props.chemQty, UoM: this.props.chemQtyUoM, cabinet: this.props.cabinet }, this.props.selectedChemical)}>Edit</button>
                 </div>
                 <ul>
                     {listItems}
                 </ul>
+                <Prompt when={this.props.selectedChemical !== -1 ||
+                    this.props.chemName !== '' ||
+                    this.props.chemTradeName !== '' ||
+                    this.props.chemQty !== '' ||
+                    this.props.chemQtyUoM !== '' ||
+                    this.props.cabinet !== ''}
+                    message="Are you sure you want to leave?" />
             </div>
+
         );
     }
 }
