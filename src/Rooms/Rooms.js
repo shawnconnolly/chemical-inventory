@@ -35,6 +35,7 @@ class Rooms extends Component {
     }
 
     render() {
+        this.props.onLoad(this.props.token);
         const listItems = this.props.rooms.map((room, index) =>
             <li className={classes.Rooms}
                 key={index}
@@ -89,7 +90,8 @@ const mapStateToProps = state => {
         rooms: state.rooms,
         roomName: state.roomName,
         roomLocation: state.roomLocation,
-        selectedRoom: state.selectedRoom
+        selectedRoom: state.selectedRoom,
+        token: state.token
     };
 };
 
@@ -100,7 +102,8 @@ const mapDispatchToProps = dispatch => {
         onEditRoom: (room, index) => dispatch(actions.editRoom(room, index)),
         onSelectRoom: (index) => dispatch(actions.selectRoom(index)),
         onRoomNameUpdated: (name) => dispatch(actions.updateRoomName(name)),
-        onRoomLocationUpdated: (location) => dispatch(actions.updateRoomLocation(location))
+        onRoomLocationUpdated: (location) => dispatch(actions.updateRoomLocation(location)),
+        onLoad: (token) => dispatch(actions.load(token))
     };
 };
 
