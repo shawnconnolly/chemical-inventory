@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Input from '../UI/Input/Input'
 import Button from '../UI/Button/Button'
+import Spinner from '../UI/Spinner/Spinner'
 import classes from './Login.module.css'
 import * as actions from '../Store/Actions/index';
 
@@ -118,6 +119,9 @@ class Login extends Component {
                 changed={( event ) => this.inputChangedHandler( event, formElement.id )} />
         ) );
 
+        if (this.props.loading) {
+            form = <Spinner />
+        }
         
         let errorMessage = null;
 
