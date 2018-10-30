@@ -18,5 +18,10 @@ export {
     updateChemicalUoM,
     updateChemicalCabinet
 } from './Chemicals';
-
+export {
+    auth,
+    logout,
+    setAuthRedirectPath,
+    authCheckState
+} from './Auth';
 

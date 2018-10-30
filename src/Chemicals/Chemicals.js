@@ -6,7 +6,6 @@ import * as actions from '../Store/Actions/index';
 class Chemicals extends Component {
 
     render() {
-        const pleaseSelect = (<p>Please Select a Room!</p>);
         let listItems = null;
         if (this.props.selectedRoom > -1 && this.props.rooms[this.props.selectedRoom].chemicals) {
             listItems = this.props.rooms[this.props.selectedRoom].chemicals.map((chemical, index) =>
