@@ -61,6 +61,10 @@ class Chemicals extends Component {
                     <button class="btn btn-primary"
                         disabled={this.props.selectedChemical === -1}
                         onClick={() => this.props.onEditChemical({ name: this.props.chemName, tradeName: this.props.chemTradeName, quantity: this.props.chemQty, UoM: this.props.chemQtyUoM, cabinet: this.props.cabinet }, this.props.selectedChemical)}>Edit</button>
+                    <button class="btn btn-primary"
+                        onClick={() => this.props.onSave(this.props.rooms, this.props.token)}>Save Inventory</button>
+                    <button class="btn btn-primary"
+                        onClick={() => this.props.onLoad(this.props.token)}>Load Inventory</button>
                 </div>
                 <ul>
                     {listItems}
@@ -88,7 +92,8 @@ const mapStateToProps = state => {
         chemQty: state.chemQty,
         chemQtyUoM: state.chemQtyUoM,
         cabinet: state.cabinet,
-        selectedChemical: state.selectedChemical
+        selectedChemical: state.selectedChemical,
+        token: state.token
     };
 };
 
@@ -102,7 +107,9 @@ const mapDispatchToProps = dispatch => {
         onChemicalTradeNameUpdated: (value) => dispatch(actions.updateChemicalTradeName(value)),
         onChemicalQtyUpdated: (value) => dispatch(actions.updateChemicalQuantity(value)),
         onChemicalQtyUoMUpdated: (value) => dispatch(actions.updateChemicalUoM(value)),
-        onChemicalCabinetUpdated: (value) => dispatch(actions.updateChemicalCabinet(value))
+        onChemicalCabinetUpdated: (value) => dispatch(actions.updateChemicalCabinet(value)),
+        onSave: (rooms, token) => dispatch(actions.save(rooms, token)),
+        onLoad: (token) => dispatch(actions.load(token))
     };
 };
 

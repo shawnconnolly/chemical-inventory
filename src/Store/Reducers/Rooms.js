@@ -58,6 +58,12 @@ const removeRoom = (state, action) => {
     return updateObject( state, updatedState );
 }
 
+const fetchRoomsSuccess = ( state, action ) => {
+    return updateObject( state, {
+        rooms: action.rooms
+    } );
+};
+
 const selectRoom = (state, action) => {
     const room = state.rooms[action.index];
     const updatedState = {
@@ -190,6 +196,14 @@ const authFail = (state, action) => {
     });
 };
 
+const save = ( state, action ) => {
+    return updateObject( state, state );
+};
+
+const load = ( state, action ) => {
+    return updateObject( state, state );
+};
+
 const authLogout = (state, action) => {
     return updateObject(state, { token: null, userId: null });
 };
@@ -207,6 +221,9 @@ const reducer = (state = initialState, action) => {
         case actionTypes.SELECT_ROOM: return selectRoom(state, action);
         case actionTypes.UPDATE_ROOM_NAME: return roomNameUpdated(state, action);
         case actionTypes.UPDATE_LOCATION_NAME: return roomLocationUpdated(state, action);
+        case actionTypes.SAVE: return save(state, action);
+        case actionTypes.LOAD: return load(state, action);
+        case actionTypes.FETCH_ROOMS_SUCCESS: return fetchRoomsSuccess(state, action);
 
         case actionTypes.ADD_CHEMICAL: return addChemical(state, action);
         case actionTypes.EDIT_CHEMICAL: return editChemical(state, action);

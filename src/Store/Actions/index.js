@@ -4,7 +4,9 @@ export {
     editRoom,
     selectRoom,
     updateRoomName,
-    updateRoomLocation
+    updateRoomLocation,
+    save,
+    load
 } from './Rooms';
 
 export {
