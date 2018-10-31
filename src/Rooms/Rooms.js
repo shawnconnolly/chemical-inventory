@@ -23,7 +23,7 @@ class Rooms extends Component {
     }
 
     validateNameAndLocation(name, location) {
-        var newArray = this.props.rooms.filter(function (room) {
+        var newArray = this.props.rooms.filter((room) => {
             return room.name === name &&
                 room.location === location;
         });
