@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './Rooms.module.css'
 import { connect } from 'react-redux';
 import * as actions from '../Store/Actions/index';
+import { Button } from 'reactstrap';
 
 class Rooms extends Component {
     validCombo = true;
@@ -34,7 +35,6 @@ class Rooms extends Component {
     }
 
     render() {
-        this.props.onLoad(this.props.token);
         const listItems = this.props.rooms.map((room, index) =>
             <li className={classes.Rooms}
                 key={index}
@@ -49,13 +49,13 @@ class Rooms extends Component {
         return (
             <div>
                 <div>
-                    <label for="name">Name</label>
+                    <label htmlFor="name">Name</label>
                     <input type="text"
                         name="name"
                         className="form-control"
                         value={this.props.roomName}
                         onChange={(e) => this.validateUniqueNameLocationForNameUpdate(e)} />
-                    <label for="location">Location</label>
+                    <label htmlFor="location">Location</label>
                     <input type="text"
                         name="location"
                         className="form-control"
@@ -63,18 +63,18 @@ class Rooms extends Component {
                         onChange={(e) => this.validateUniqueNameLocationForLocationUpdate(e)} />
                     {invalidMessage}
                     <hr></hr>
-                    <button class="btn btn-primary"
+                    <Button className="btn btn-primary"
                         onClick={() => this.props.onRoomAdded({ name: this.props.roomName, location: this.props.roomLocation, chemicals: [] })}
-                        disabled={this.props.selectedRoom !== -1 || !this.validCombo}>Add</button>
-                    <button class="btn btn-primary"
+                        disabled={this.props.selectedRoom !== -1 || !this.validCombo}>Add</Button>
+                    <Button className="btn btn-primary"
                         disabled={this.props.selectedRoom === -1}
-                        onClick={() => this.props.onRoomRemoved(this.props.selectedRoom)}>Remove</button>
-                    <button class="btn btn-primary"
+                        onClick={() => this.props.onRoomRemoved(this.props.selectedRoom)}>Remove</Button>
+                    <Button className="btn btn-primary"
                         disabled={this.props.selectedRoom === -1 || !this.validCombo}
-                        onClick={() => this.props.onEditRoom({ name: this.props.roomName, location: this.props.roomLocation, chemicals: [] }, this.props.selectedRoom)}>Edit</button>
-                    <button class="btn btn-primary"
+                        onClick={() => this.props.onEditRoom({ name: this.props.roomName, location: this.props.roomLocation, chemicals: [] }, this.props.selectedRoom)}>Edit</Button>
+                    <Button className="btn btn-primary"
                         disabled={this.props.selectedRoom === -1}
-                        onClick={this.viewChemicals}>View Chemicals</button>
+                        onClick={this.viewChemicals}>View Chemicals</Button>
                 </div>
                 <ul>
                     {listItems}
