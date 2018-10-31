@@ -83,17 +83,17 @@ class Chemicals extends Component {
 }
 const mapStateToProps = state => {
     return {
-        roomName: state.roomName,
-        roomLocation: state.roomLocation,
-        selectedRoom: state.selectedRoom,
-        rooms: state.rooms,
-        chemName: state.chemName,
-        chemTradeName: state.chemTradeName,
-        chemQty: state.chemQty,
-        chemQtyUoM: state.chemQtyUoM,
-        cabinet: state.cabinet,
-        selectedChemical: state.selectedChemical,
-        token: state.token
+        roomName: state.rooms.roomName,
+        roomLocation: state.rooms.roomLocation,
+        selectedRoom: state.rooms.selectedRoom,
+        rooms: state.rooms.rooms,
+        chemName: state.rooms.chemName,
+        chemTradeName: state.rooms.chemTradeName,
+        chemQty: state.rooms.chemQty,
+        chemQtyUoM: state.rooms.chemQtyUoM,
+        cabinet: state.rooms.cabinet,
+        selectedChemical: state.rooms.selectedChemical,
+        token: state.auth.token
     };
 };
 

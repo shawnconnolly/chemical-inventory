@@ -86,11 +86,11 @@ class Rooms extends Component {
 
 const mapStateToProps = state => {
     return {
-        rooms: state.rooms,
-        roomName: state.roomName,
-        roomLocation: state.roomLocation,
-        selectedRoom: state.selectedRoom,
-        token: state.token
+        rooms: state.rooms.rooms,
+        roomName: state.rooms.roomName,
+        roomLocation: state.rooms.roomLocation,
+        selectedRoom: state.rooms.selectedRoom,
+        token: state.auth.token
     };
 };
 
