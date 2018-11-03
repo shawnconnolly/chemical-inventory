@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classes from './Rooms.module.css'
+import classes from './Rooms.module.scss'
 import { connect } from 'react-redux';
 import * as actions from '../Store/Actions/index';
 import { Button } from 'reactstrap';
@@ -48,17 +48,17 @@ class Rooms extends Component {
 
         return (
             <div>
-                <div>
-                    <label htmlFor="name">Name</label>
+                <div className={classes.FormContainer}>
+                    <label htmlFor="name" className={classes.FormLabel}>Name</label>
                     <input type="text"
                         name="name"
-                        className="form-control"
+                        className={classes.FormTextbox}
                         value={this.props.roomName}
                         onChange={(e) => this.validateUniqueNameLocationForNameUpdate(e)} />
-                    <label htmlFor="location">Location</label>
+                    <label htmlFor="location" className={classes.FormLabel}>Location</label>
                     <input type="text"
                         name="location"
-                        className="form-control"
+                        className={classes.FormTextbox}
                         value={this.props.roomLocation}
                         onChange={(e) => this.validateUniqueNameLocationForLocationUpdate(e)} />
                     {invalidMessage}

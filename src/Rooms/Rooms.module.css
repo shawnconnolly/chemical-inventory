@@ -1,9 +1,0 @@
-.Rooms {
-    list-style: none;
-    cursor: pointer;
-}
-
-.Rooms:hover,
-.Rooms:active {
-    border: 2px solid black;
-}

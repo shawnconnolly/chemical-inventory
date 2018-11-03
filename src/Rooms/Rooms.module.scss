@@ -1,0 +1,27 @@
+.Rooms {
+    list-style: none;
+    cursor: pointer;
+}
+
+.Rooms:hover,
+.Rooms:active {
+    border: 2px solid black;
+}
+
+.FormTextbox {
+    width: 25rem;
+    margin: auto;
+}
+
+.FormLabel {
+    display: block;
+}
+
+Button {
+    margin: 0.25rem;
+}
+
+ul {
+    margin: auto;
+    padding: 0px;
+}

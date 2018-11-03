@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classes from './Chemicals.module.css'
+import classes from './Chemicals.module.scss'
 import { connect } from 'react-redux';
 import * as actions from '../Store/Actions/index';
 import { Prompt } from 'react-router';
@@ -19,37 +19,37 @@ class Chemicals extends Component {
 
         return (
             <div>
-                <h1>{this.props.roomName}</h1>
-                <h2>{this.props.roomLocation}</h2>
-                <div className="classes.Chemicals">
-                    <label htmlFor="name">Name</label>
+                <h2>{this.props.roomName}</h2>
+                <h3>{this.props.roomLocation}</h3>
+                <div>
+                    <label htmlFor="name" className={classes.FormLabel}>Name</label>
                     <input type="text"
                         name="name"
-                        className="form-control"
+                        className={classes.FormTextbox}
                         value={this.props.chemName}
                         onChange={(e) => this.props.onChemicalNameUpdated(e.target.value)} />
-                    <label htmlFor="tradename">Trade Name</label>
+                    <label htmlFor="tradename" className={classes.FormLabel}>Trade Name</label>
                     <input type="text"
                         name="tradename"
-                        className="form-control"
+                        className={classes.FormTextbox}
                         value={this.props.chemTradeName}
                         onChange={(e) => this.props.onChemicalTradeNameUpdated(e.target.value)} />
-                    <label htmlFor="quantity">Quantity</label>
+                    <label htmlFor="quantity" className={classes.FormLabel}>Quantity</label>
                     <input type="text"
                         name="quantity"
-                        className="form-control"
+                        className={classes.FormTextbox}
                         value={this.props.chemQty}
                         onChange={(e) => this.props.onChemicalQtyUpdated(e.target.value)} />
-                    <label htmlFor="uom">Unit of Measure</label>
+                    <label htmlFor="uom" className={classes.FormLabel}>Unit of Measure</label>
                     <input type="text"
                         name="uom"
-                        className="form-control"
+                        className={classes.FormTextbox}
                         value={this.props.chemQtyUoM}
                         onChange={(e) => this.props.onChemicalQtyUoMUpdated(e.target.value)} />
-                    <label htmlFor="cabinet">Cabinet</label>
+                    <label htmlFor="cabinet" className={classes.FormLabel}>Cabinet</label>
                     <input type="text"
                         name="cabinet"
-                        className="form-control"
+                        className={classes.FormTextbox}
                         value={this.props.cabinet}
                         onChange={(e) => this.props.onChemicalCabinetUpdated(e.target.value)} />
                     <hr></hr>
