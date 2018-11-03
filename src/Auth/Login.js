@@ -107,7 +107,7 @@ class Login extends Component {
             } );
         }
 
-        let form = formElementsArray.map( formElement => (
+        let form = formElementsArray.map( (formElement, index )=> (
             <Input
                 key={formElement.id}
                 elementType={formElement.config.elementType}

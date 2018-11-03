@@ -18,38 +18,37 @@ class Chemicals extends Component {
         }
 
         return (
-            <div>
+            <div className={classes.FormContainer}>
                 <h2>{this.props.roomName}</h2>
                 <h3>{this.props.roomLocation}</h3>
-                <div>
-                    <label htmlFor="name" className={classes.FormLabel}>Name</label>
+                    <label htmlFor="name" className={classes.FormLabelName}>Name</label>
                     <input type="text"
                         name="name"
-                        className={classes.FormTextbox}
+                        className={classes.FormTextboxName}
                         value={this.props.chemName}
                         onChange={(e) => this.props.onChemicalNameUpdated(e.target.value)} />
-                    <label htmlFor="tradename" className={classes.FormLabel}>Trade Name</label>
+                    <label htmlFor="tradename" className={classes.FormLabelTradeName}>Trade Name</label>
                     <input type="text"
                         name="tradename"
-                        className={classes.FormTextbox}
+                        className={classes.FormTextboxTradeName}
                         value={this.props.chemTradeName}
                         onChange={(e) => this.props.onChemicalTradeNameUpdated(e.target.value)} />
-                    <label htmlFor="quantity" className={classes.FormLabel}>Quantity</label>
+                    <label htmlFor="quantity" className={classes.FormLabelQty}>Quantity</label>
                     <input type="text"
                         name="quantity"
-                        className={classes.FormTextbox}
+                        className={classes.FormTextboxQty}
                         value={this.props.chemQty}
                         onChange={(e) => this.props.onChemicalQtyUpdated(e.target.value)} />
-                    <label htmlFor="uom" className={classes.FormLabel}>Unit of Measure</label>
+                    <label htmlFor="uom" className={classes.FormLabelUoM}>Unit of Measure</label>
                     <input type="text"
                         name="uom"
-                        className={classes.FormTextbox}
+                        className={classes.FormTextboxUoM}
                         value={this.props.chemQtyUoM}
                         onChange={(e) => this.props.onChemicalQtyUoMUpdated(e.target.value)} />
-                    <label htmlFor="cabinet" className={classes.FormLabel}>Cabinet</label>
+                    <label htmlFor="cabinet" className={classes.FormLabelCabinet}>Cabinet</label>
                     <input type="text"
                         name="cabinet"
-                        className={classes.FormTextbox}
+                        className={classes.FormTextboxCabinet}
                         value={this.props.cabinet}
                         onChange={(e) => this.props.onChemicalCabinetUpdated(e.target.value)} />
                     <hr></hr>
@@ -66,7 +65,6 @@ class Chemicals extends Component {
                         onClick={() => this.props.onSave(this.props.rooms, this.props.token)}>Save Inventory</Button>
                     <Button className="btn btn-primary"
                         onClick={() => this.props.onLoad(this.props.token)}>Load Inventory</Button>
-                </div>
                 <ul>
                     {listItems}
                 </ul>

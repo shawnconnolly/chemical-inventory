@@ -21,3 +21,69 @@
     width: 25rem;
     margin: auto;
 }
+
+.FormContainer {
+    display: grid;
+    grid-template-rows: repeat(12, auto);
+    grid-column-gap: 0.5rem;
+    grid-template-columns: 5rem auto 5rem;
+}
+
+h2 {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+}
+
+h3 {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+}
+
+.FormLabelName {
+    grid-row: 3 / 4;
+    grid-column: 2 / 3;
+}
+.FormTextboxName{
+    grid-row: 4 / 5;
+    grid-column: 2 / 3;
+}
+
+.FormLabelTradeName{
+    grid-row: 5 / 6;
+    grid-column: 2 / 3;
+}
+
+.FormTextboxTradeName{
+    grid-row: 6 / 7;
+    grid-column: 2 / 3;
+}
+
+.FormLabelQty{
+    grid-row: 7 / 8;
+    grid-column: 2 / 3;
+}
+
+.FormTextboxQty{
+    grid-row: 8 / 9;
+    grid-column: 2 / 3;
+}
+
+.FormLabelUoM{
+    grid-row: 9 / 10;
+    grid-column: 2 / 3;
+}
+
+.FormTextboxUoM{
+    grid-row: 10 / 11;
+    grid-column: 2 / 3;
+}
+
+.FormLabelCabinet{
+    grid-row: 11 / 12;
+    grid-column: 2 / 3;
+}
+
+.FormTextboxCabinet{
+    grid-row: 12 / 13;
+    grid-column: 2 / 3;
+}

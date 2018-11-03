@@ -49,16 +49,16 @@ class Rooms extends Component {
         return (
             <div>
                 <div className={classes.FormContainer}>
-                    <label htmlFor="name" className={classes.FormLabel}>Name</label>
+                    <label htmlFor="name" className={classes.FormLabelName}>Name</label>
                     <input type="text"
                         name="name"
-                        className={classes.FormTextbox}
+                        className={classes.FormTextboxName}
                         value={this.props.roomName}
                         onChange={(e) => this.validateUniqueNameLocationForNameUpdate(e)} />
-                    <label htmlFor="location" className={classes.FormLabel}>Location</label>
+                    <label htmlFor="location" className={classes.FormLabelLocation}>Location</label>
                     <input type="text"
                         name="location"
-                        className={classes.FormTextbox}
+                        className={classes.FormTextboxLocation}
                         value={this.props.roomLocation}
                         onChange={(e) => this.validateUniqueNameLocationForLocationUpdate(e)} />
                     {invalidMessage}
@@ -75,10 +75,11 @@ class Rooms extends Component {
                     <Button className="btn btn-primary"
                         disabled={this.props.selectedRoom === -1}
                         onClick={this.viewChemicals}>View Chemicals</Button>
+                    <ul>
+                        {listItems}
+                    </ul>
                 </div>
-                <ul>
-                    {listItems}
-                </ul>
+
             </div>
         );
     }
