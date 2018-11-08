@@ -52,12 +52,14 @@ class Rooms extends Component {
                     <label htmlFor="name" className={classes.FormLabelName}>Name</label>
                     <input type="text"
                         name="name"
+                        id="name"
                         className={classes.FormTextboxName}
                         value={this.props.roomName}
                         onChange={(e) => this.validateUniqueNameLocationForNameUpdate(e)} />
                     <label htmlFor="location" className={classes.FormLabelLocation}>Location</label>
                     <input type="text"
                         name="location"
+                        id="location"
                         className={classes.FormTextboxLocation}
                         value={this.props.roomLocation}
                         onChange={(e) => this.validateUniqueNameLocationForLocationUpdate(e)} />
